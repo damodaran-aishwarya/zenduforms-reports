@@ -1,0 +1,217 @@
+$blue: #1e88e5;
+$blue-700: #1976d2;
+$bg: #f7f8fc;
+$text: #2e2e2e;
+$muted: #6b7280;
+$border: #e5e7eb;
+$shadow: 0 2px 10px rgba(0,0,0,.06);
+
+.page { background: $bg; min-height: calc(100vh - 56px); padding: 24px 16px; }
+.page-title {
+  max-width: 1200px; margin: 0% 5% 2% 1%; font-weight: 700; color: $text;
+}
+
+.toolbar {
+  margin: 0% 1% 2% 1%; display: flex; gap: 16px;
+  align-items: center; justify-content: space-between; flex-wrap: wrap;
+}
+
+.search {
+  position: relative; width: min(460px, 100%);
+  input {
+    width: 100%; border: 1px solid $border; border-radius: 4px;
+    padding: 12px 44px 12px 14px; background: #fff; outline: none;
+    &:focus { border-color: $blue; box-shadow: 0 0 0 3px rgba(30,136,229,.12); }
+  }
+  .clear {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    background: transparent; border: none; cursor: pointer;
+  }
+}
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 459px; // adjust as needed
+  height: 48px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 13px 16px 13px 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-box .clear {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.toolbar-actions { display: flex; align-items: center; gap: 12px; }
+
+.sort-pill {
+  display: flex; align-items: center; gap: 8px; color: $muted; font-weight: 500;
+  .pill {
+    border: 1px solid $border; background: #fff; padding: 8px 14px;
+    border-radius: 999px; cursor: pointer;
+  }
+  .pill.active { border-color: $blue; color: $blue; }
+}
+
+.add-pill {
+  width : 209px;
+  height: 48px;
+  border: 1px solid darken($border, 3); 
+  background: #2188D9; 
+  color: #fff;
+  border-radius: 4px;
+   padding: 10px 18px; 
+   font-weight: 600; box-shadow: $shadow;
+  cursor: pointer;
+  &:hover { box-shadow: 0 3px 12px rgba(0,0,0,.1); }
+}
+
+.cards {
+  margin: 0% 1% 2% 1%; display: grid; gap: 12px;
+}
+
+.card {
+  display: grid; grid-template-columns: 44px 1fr auto;
+  gap: 12px; align-items: center;
+  background: #fff; border: 1px solid $border; border-radius: 10px;
+  padding: 12px; box-shadow: $shadow;
+}
+
+.leftdot {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: $blue-700;
+}
+
+.main {
+  .name { color: $blue-700; text-decoration: none; font-weight: 700; font-size:16px}
+  .meta {
+    margin-top: 6px; display: grid;
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+    gap: 8px 16px;
+  }
+  .meta-block { display: flex; gap: 6px; align-items: baseline; }
+  .label { color: $muted; font-size: 12px; }
+  .value { color: $text; font-size: 13px; }
+  .link { color: $blue-700; text-decoration: none; }
+}
+
+.row-actions {
+  display: flex; gap: 8px;
+  .icon-btn {
+    width: 36px; height: 36px; 
+    display: grid; place-items: center;
+    cursor: pointer;
+  }
+  .danger { color: #d32f2f; border-color: #ffd6d6; background: #fff5f5; }
+}
+
+.pager {
+  margin: 1% 1% 1% 1%; display: flex;
+  justify-content: space-between; align-items: center; color: $muted;
+}
+.pages { display: flex; gap: 8px; align-items: center; }
+.page-btn {
+  min-width: 36px; height: 36px; padding: 0 10px; border-radius: 8px;
+  border: 1px solid $border; background: #fff; cursor: pointer;
+}
+.page-btn.active { border-color: $blue; color: $blue; }
+.page-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.report-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  padding: 12px;
+  display: grid;
+  grid-template-columns:
+    44px                      /* icon */
+    minmax(260px, 1.6fr)      /* name */
+    160px                     /* created */
+    160px                     /* modified */
+    260px                     /* owner (emails) */
+    minmax(180px, 1fr)        /* form */
+    auto;                     /* actions */
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 6px;
+}
+
+/* Map columns */
+.c-icon     { grid-column: 1; }
+.c-name     { grid-column: 2; }
+.c-created  { grid-column: 3; }
+.c-modified { grid-column: 4; }
+.c-owner    { grid-column: 5; }
+.c-form     { grid-column: 6; }
+.c-actions  { grid-column: 7; justify-self: end; display: flex; gap: 8px; }
+
+/* Typography & trims */
+.name { color: #1976d2; font-weight: 700; text-decoration: none; }
+.label { color: #6b7280; font-size: 12px; line-height: 1; margin-bottom: 4px; }
+.value { color: #2e2e2e; font-size: 13px; line-height: 1.2; }
+.link  { color: #1976d2; text-decoration: none; }
+.ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* Icon circle */
+.c-icon .nav-icon {
+  width: 20px; height: 20px; display: block;
+  filter: none; /* remove white invert if you used it earlier */
+}
+.c-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #1976d2; 
+}
+
+/* Actions */
+.icon-btn {
+  width: 36px; height: 36px;
+  display: grid; place-items: center; cursor: pointer;
+  border:none;
+  background: none;
+}
+.icon-btn.danger { color: #d32f2f; border:none;
+  background: none;}
+
+/* Responsive: stack metadata on small widths */
+@media (max-width: 1100px) {
+  .report-card {
+    grid-template-columns: 44px 1fr auto;
+    row-gap: 10px;
+  }
+  .c-actions { grid-column: 3; grid-row: 1; }
+  .c-created, .c-modified, .c-owner, .c-form { grid-column: 2 / span 2; display: flex; gap: 24px; }
+}
+.sort-dropdown {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: none; cursor: pointer;
+  padding: 8px 10px; border-radius: 8px;
+  color: #6b7280; /* label gray */
+  font-weight: 500;
+}
+.sort-dropdown:hover { background: rgba(0,0,0,0.04); }
+
+.sort-dropdown .label { opacity: 0.9; }
+.sort-dropdown .value { color: #0f172a; font-weight: 700; margin-left: 4px; } /* bold “Newest” */
+.sort-dropdown mat-icon { font-size: 18px; height: 18px; width: 18px; line-height: 18px; }
+

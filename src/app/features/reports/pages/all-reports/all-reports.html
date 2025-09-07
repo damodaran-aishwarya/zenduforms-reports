@@ -1,0 +1,108 @@
+<div class="page">
+  <h1 class="page-title">All Reports</h1>
+
+  <div class="toolbar">
+   <div class="search">
+  <div class="search-box">
+    <img class="search-icon" src="assets/icons/Search.png" alt="Search" />
+    <input
+      type="text"
+      placeholder="Search..."
+      [ngModel]="searchText()"
+      (ngModelChange)="onSearch($event)"
+      aria-label="Search reports" />
+    <button class="clear" *ngIf="searchText()" (click)="onSearch('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+    <div class="toolbar-actions">
+      <button class="add-pill">+ Add new Report</button>
+    <button class="sort-dropdown" type="button" [matMenuTriggerFor]="sortMenu">
+  <span class="label">Sort by:</span>
+  <span class="value">{{ sortText() }}</span>
+  <mat-icon>expand_more</mat-icon>
+</button>
+
+<mat-menu #sortMenu="matMenu">
+  <button mat-menu-item (click)="setSort('newest')" [disabled]="sortBy()==='newest'">Newest</button>
+  <button mat-menu-item (click)="setSort('oldest')" [disabled]="sortBy()==='oldest'">Oldest</button>
+  <button mat-menu-item (click)="setSort('name')"   [disabled]="sortBy()==='name'">Name</button>
+</mat-menu>
+      
+    </div>
+  </div>
+
+  <!-- ⬇️ REPLACED SECTION: cards rendered on a shared grid so columns align -->
+  <div class="cards">
+    <article class="report-card" *ngFor="let r of pageSlice()">
+      <!-- Icon -->
+      <div class="c c-icon">
+        <img class="nav-icon" src="assets/icons/Graph.png" alt="" />
+      </div>
+
+      <!-- Name -->
+      <div class="c c-name">
+        <a class="name" href="javascript:void(0)">{{ r.name }}</a>
+      </div>
+
+      <!-- Created -->
+      <div class="c c-created">
+        <div class="label">Created:</div>
+        <div class="value">{{ r.createdAt | date:'MMM d, y' }}</div>
+      </div>
+
+      <!-- Modified -->
+      <div class="c c-modified">
+        <div class="label">Modified:</div>
+        <div class="value">{{ r.updatedAt | date:'MMM d, y' }}</div>
+      </div>
+
+      <!-- Owner -->
+      <div class="c c-owner">
+        <div class="label">Owner:</div>
+        <div class="value ellipsis">{{ r.owner }}</div>
+      </div>
+
+      <!-- Form -->
+      <div class="c c-form">
+        <div class="label">Form:</div>
+        <a class="value link" href="javascript:void(0)">{{ r.form }}</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="c c-actions">
+        <button class="icon-btn danger" (click)="delete(r)" aria-label="Delete">
+          <img class="nav-icon" src="assets/icons/Delete.png" alt="" />
+        </button>
+        <button class="icon-btn" (click)="edit(r)" aria-label="Edit">
+         <img class="nav-icon" src="assets/icons/Edit.png" alt="" />
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <!-- ⬇️ Footer using getters (no Math in template) -->
+  <footer class="pager">
+    <div class="count">
+      {{ pageIndex() * pageSize + 1 }}-{{ Math.min((pageIndex() + 1) * pageSize, total()) }} of {{total()}} History Records 
+    </div>
+
+    <div class="pages">
+      <button class="page-btn" (click)="prevPage()" [disabled]="pageIndex()===0">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <button
+        class="page-btn"
+        *ngFor="let p of pageNumbers(); let i = index"
+        [class.active]="i===pageIndex()"
+        (click)="goTo(i)">
+        {{ i + 1 }}
+      </button>
+      <button class="page-btn" (click)="nextPage()" [disabled]="pageIndex()===totalPages()-1">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </footer>
+</div>

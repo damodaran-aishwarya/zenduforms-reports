@@ -1,0 +1,42 @@
+$blue: #1e88e5; // close to screenshot
+$blue-700: #1976d2;
+
+.zf-header {
+  background: $blue;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.zf-header__inner {
+  margin: 0 auto;
+  padding: 10px 32px 10px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height:72px;
+}
+.brand { font-weight: 700; font-size: 32px; }
+
+.nav { display: flex; gap: var(--zf-gap-nav, 24px); }
+
+.nav-link {
+  display: inline-flex;           
+  align-items: center;
+  gap: 8px;                       
+  text-decoration: none;
+  color: #e6f2ff;                 
+  font-weight: 500;
+  opacity: .9;
+  padding-bottom: 6px;
+  font-size: 18px;       
+}
+.nav-link:hover { opacity: 1; }
+.nav-link.active {
+  color: #fff;
+  border-bottom: 2px solid #fff;  
+}
+.nav-icon {
+  width: 18px;                    /* tune to your Figma size (16–20px typical) */
+  height: 18px;
+  display: block;
+  object-fit: contain;
+}
+.icons { display: flex; gap: 10px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.9); }
