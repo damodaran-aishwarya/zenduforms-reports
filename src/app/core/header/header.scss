@@ -14,7 +14,7 @@ $blue-700: #1976d2;
 }
 .brand { font-weight: 700; font-size: 32px; }
 
-.nav { display: flex; gap: var(--zf-gap-nav, 24px); }
+.nav { display: flex; gap: var(--zf-gap-nav, 24px); margin-right: 15%;}
 
 .nav-link {
   display: inline-flex;           
